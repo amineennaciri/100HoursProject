@@ -1,0 +1,12 @@
+{
+  "name": "100hoursproject",
+  "version": "1.0.0",
+  "description": "Welcome to my 100 hours project, this is a project where I will sink at least a 100 hours of work into it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

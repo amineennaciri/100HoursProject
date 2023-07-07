@@ -8,14 +8,14 @@ require('dotenv').config();
 
 let db,
     dbConnectionString = process.env.DB_STRING,
-    dbName = 'FullStackTemplate',
+    dbName = '100HoursProject',
     collection
     
 MongoClient.connect(dbConnectionString)
     .then(client =>{
         console.log(`Connected to Database`)
         db = client.db(dbName)
-        collection = db.collection('movies')
+        collection = db.collection('todos')
     })
 
 app.set('view engine', 'ejs');

@@ -8,7 +8,6 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require('express-flash');
 const mainRoutes = require('./routes/main');
-const messageRoutes = require('./routes/message');
 const connectDB = require("./config/database");
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });

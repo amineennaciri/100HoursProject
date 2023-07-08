@@ -1,38 +1,40 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
 const app = express();
-const cors = require('cors');
+const mongoose = require("mongoose");
 const ejs = require('ejs');
-require('dotenv').config();
+const bcrypt = require('bcryptjs');
+const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
+const flash = require('express-flash');
+const mainRoutes = require('./routes/main');
+const messageRoutes = require('./routes/message');
+const connectDB = require("./config/database");
+//Use .env file in config folder
+require("dotenv").config({ path: "./config/.env" });
 
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+require('./config/passport')(passport);
+//Connect To Database
+connectDB();
+app.use(passport.initialize());
+// you will have access to the currentUser variable in all of your views, and you won’t have to manually pass it into all of the controllers in which you need it.
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
-let db,
-    dbConnectionString = process.env.DB_STRING,
-    dbName = '100HoursProject',
-    collection
-    
-MongoClient.connect(dbConnectionString)
-    .then(client =>{
-        console.log(`Connected to Database`)
-        db = client.db(dbName)
-        collection = db.collection('todos')
-    })
-
+app.use(passport.session());
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+// these are the flash alert that works when something isn't working well with our log ins
+app.use(flash());
 
-app.get('/', async (request, response) => {
-    try {
-        response.render('index.ejs')
-    } catch (error) {
-        response.status(500).send({message: error.message})
-    }
-})
+app.use("/", mainRoutes);
+//app.use("/message", messageRoutes);
 
-
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server is running on port: ${process.env.PORT}`)
-})
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`)
+});

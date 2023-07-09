@@ -4,13 +4,16 @@ const User = require('./../models/user');
 const validator = require('validator');
 
 const logInMiddleware = passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/',
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
 });
 
 module.exports = {
     getSignUp: (req,res)=>{
         res.render('signup.ejs');
+    },
+    getLogIn: (req,res)=>{
+      res.render('login.ejs');
     },
     postSignUp: async (req, res, next)=>{
         const validationErrors = []
@@ -41,13 +44,22 @@ module.exports = {
               email:req.body.email,
               password: hashedPassword,
             });
-            //await user.save();
-            //await req.logIn(user);
             const result = await user.save();
             res.redirect("/");
           } catch(err) {
             return next(err);
           };
+        });
+      },
+      postLogIn: (req, res, next)=> {
+        logInMiddleware(req, res, next);
+      },
+      getLogOut: (req, res, next) => {
+        req.logout(function (err) {
+          if (err) {
+            return next(err);
+          }
+          res.redirect("/");
         });
       },
 }

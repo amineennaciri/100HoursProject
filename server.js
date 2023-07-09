@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require('express-flash');
 const mainRoutes = require('./routes/main');
+const dashboardRoutes = require('./routes/dashboard');
 const connectDB = require("./config/database");
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -32,7 +33,7 @@ app.use(express.json());
 app.use(flash());
 
 app.use("/", mainRoutes);
-//app.use("/message", messageRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)

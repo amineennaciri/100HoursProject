@@ -16,5 +16,14 @@ module.exports = {
           const result = await todo.save();
           res.redirect("/dashboard");
     },
-
+    deleteTodo: async (req, res, next)=>{
+        console.log(req.body.todoIdFromJSFile)
+        try{
+            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
+            console.log('Deleted Todo')
+            res.json('Deleted It')
+        }catch(err){
+            console.log(err)
+        }
+    },
 }

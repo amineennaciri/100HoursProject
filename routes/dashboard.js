@@ -9,6 +9,7 @@ const { ensureAuth } = require('./../middleware/auth');
 router.get('/', ensureAuth, homeController.getDashBoard);
 router.get('/todo', todoController.getTodo);
 router.post('/posttodo', todoController.postTodo);
+router.delete('/deleteTodo', todoController.deleteTodo);
 
 
 module.exports = router;

@@ -86,7 +86,7 @@ function modifyDashboard(){
             <p class="text-gray-500">Set a reminder for a task that you did not finish which should be addressed    either tomorrow, on the weekend or next week.</p>  
         </div>  
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900" id="cancelAddTodo">Cancel</button>
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900"><a href="/dashboard">Cancel</a></button>
             <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 SaveBtn" id='${todoId}'>Save</button>
         </div>
     </div>
@@ -96,8 +96,6 @@ function modifyDashboard(){
     parentNodeDiv.appendChild(newElement);
     const saveBtn = document.querySelector('.SaveBtn');
     saveBtn.addEventListener('click', editTodo);
-    const cancelAddTodoBtn = document.querySelector('#cancelAddTodo');
-    cancelAddTodoBtn.addEventListener('click',cancelAddTodoFunction);
 }
 async function editTodo(){
     const todoId = this.id;
@@ -121,10 +119,4 @@ async function editTodo(){
     }
 }
 /* *********** */
-/*todo.ejs cancel button*/
-const cancelAddTodoBtn = document.querySelector('#cancelAddTodo');
-cancelAddTodoBtn.addEventListener('click',cancelAddTodoFunction);
-function cancelAddTodoFunction(){
-    document.querySelector('#todo').value = '';
-    document.querySelectorAll('#urgency')[0].checked = 'true';
-}
+/********************/

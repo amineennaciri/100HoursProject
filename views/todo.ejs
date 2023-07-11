@@ -41,10 +41,10 @@
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="dashboard.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-                  <a href="todos.html" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Todo's</a>
-                  <a href="growth.html" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Growth Goals</a>
-                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
+                  <a href="/dashboard" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
+                  <a href="/dashboard/todo" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Todo's</a>
+                  <a href="/dashboard/growth" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Growth Goals</a>
+                  <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a> -->
                 </div>
               </div>
             </div>
@@ -77,9 +77,9 @@
                 -->
                 <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" id="menuDiv">
                   <!-- Active: "bg-gray-100", Not Active: "" -->
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                  <a href="home.html" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                  <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a> -->
+                  <a href="/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                 </div>
               </div>
             </div>
@@ -90,10 +90,10 @@
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+            <a href="/dashboard" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
+            <a href="/dashboard/todo" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Todo's</a>
+            <a href="/dashboard/growth" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Growth Goals</a>
+            <!-- <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a> -->
           </div>
         </div>
       </nav>
@@ -129,8 +129,8 @@
       
   
       <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-        <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Create a Task</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Write in a few sentences the task that you need to realize.</p>
   
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
@@ -152,23 +152,23 @@
             <legend class="text-sm font-semibold leading-6 text-gray-900">Define the Urgency of the Task</legend>
             <div class="mt-6 space-y-6">
               <div class="flex items-center gap-x-3">
-                <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Most Important Task">
-                <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Most Important Task</label>
+                <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Most Important Task" checked>
+                <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-urgentTaskColor">Most Important Task</label>
                 <p class="text-gray-500">This is the most important task you need to accomplish today.</p>
               </div>
               <div class="flex items-center gap-x-3">
                 <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Primary Task">
-                <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Primary Task</label>
+                <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-primaryTaskColor">Primary Task</label>
                 <p class="text-gray-500">These are the urgent / important tasks that you need to accomplish today.</p>
               </div>
               <div class="flex items-center gap-x-3">
                 <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Secondary Task">
-                <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Secondary Task</label>
+                <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-secondaryTaskColor">Secondary Task</label>
                 <p class="text-gray-500">These tasks are potentially important / urgent for you to accomplish today.</p>
               </div>
               <div class="flex items-center gap-x-3">
                 <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Reminders for Later">
-                <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Reminders for Later</label>
+                <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-reminderTaskColor">Reminders for Later</label>
                 <p class="text-gray-500">Set a reminder for a task that you did not finish which should be addressed either tomorrow, on the weekend or next week.</p>
               </div>
             </div>
@@ -178,7 +178,7 @@
     </div>
   
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+      <button type="button" class="text-sm font-semibold leading-6 text-gray-900" id="cancelAddTodo">Cancel</button>
       <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
   </form>

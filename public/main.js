@@ -67,26 +67,26 @@ function modifyDashboard(){
         <label class="block text-xl font-medium leading-6 text-gray-900 mb-4">Edit the urgency of your task</label>
         <div class="flex items-center gap-x-3">
             <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Most Important Task" checked>
-            <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Most Important Task</label>
+            <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-urgentTaskColor">Most Important Task</label>
             <p class="text-gray-500">This is the most important task you need to accomplish today.</p>
         </div>
         <div class="flex items-center gap-x-3">
             <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Primary Task">
-            <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Primary Task</label>
+            <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-primaryTaskColor">Primary Task</label>
             <p class="text-gray-500">These are the urgent / important tasks that you need to accomplish today.</p>
         </div>
         <div class="flex items-center gap-x-3">
             <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Secondary Task">
-            <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Secondary Task</label>
+            <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-secondaryTaskColor">Secondary Task</label>
             <p class="text-gray-500">These tasks are potentially important / urgent for you to accomplish today.</p>
         </div>
         <div class="flex items-center gap-x-3">
             <input id="urgency" name="urgency" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Reminders for Later">
-            <label for="urgency" class="block text-sm font-medium leading-6 text-gray-900">Reminders for Later</label>  
-            <p class="text-gray-500">Set a reminder for a task that you did not finish which should be addresse d    either tomorrow, on the weekend or next week.</p>  
+            <label for="urgency" class="block text-sm font-bold leading-6 text-gray-900 text-reminderTaskColor">Reminders for Later</label>  
+            <p class="text-gray-500">Set a reminder for a task that you did not finish which should be addressed    either tomorrow, on the weekend or next week.</p>  
         </div>  
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900" id="cancelAddTodo">Cancel</button>
             <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 SaveBtn" id='${todoId}'>Save</button>
         </div>
     </div>
@@ -96,6 +96,8 @@ function modifyDashboard(){
     parentNodeDiv.appendChild(newElement);
     const saveBtn = document.querySelector('.SaveBtn');
     saveBtn.addEventListener('click', editTodo);
+    const cancelAddTodoBtn = document.querySelector('#cancelAddTodo');
+    cancelAddTodoBtn.addEventListener('click',cancelAddTodoFunction);
 }
 async function editTodo(){
     const todoId = this.id;
@@ -119,3 +121,10 @@ async function editTodo(){
     }
 }
 /* *********** */
+/*todo.ejs cancel button*/
+const cancelAddTodoBtn = document.querySelector('#cancelAddTodo');
+cancelAddTodoBtn.addEventListener('click',cancelAddTodoFunction);
+function cancelAddTodoFunction(){
+    document.querySelector('#todo').value = '';
+    document.querySelectorAll('#urgency')[0].checked = 'true';
+}

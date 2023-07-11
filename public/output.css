@@ -1390,6 +1390,26 @@ select {
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
 
+.text-primaryTaskColor {
+  --tw-text-opacity: 1;
+  color: rgb(252 151 0 / var(--tw-text-opacity));
+}
+
+.text-reminderTaskColor {
+  --tw-text-opacity: 1;
+  color: rgb(180 213 166 / var(--tw-text-opacity));
+}
+
+.text-secondaryTaskColor {
+  --tw-text-opacity: 1;
+  color: rgb(255 210 99 / var(--tw-text-opacity));
+}
+
+.text-urgentTaskColor {
+  --tw-text-opacity: 1;
+  color: rgb(245 93 30 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));

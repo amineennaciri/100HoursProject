@@ -7,7 +7,7 @@ const { ensureAuth } = require('./../middleware/auth');
 //before dashboard can be run, we must run ensureAuth
 
 router.get('/', ensureAuth, homeController.getDashBoard);
-router.get('/todo', todoController.getTodo);
+router.get('/todo',ensureAuth, todoController.getTodo);
 router.post('/posttodo', todoController.postTodo);
 router.delete('/deleteTodo', todoController.deleteTodo);
 router.put('/updateTodo', todoController.updateTodo);

@@ -10,6 +10,7 @@ router.get('/', ensureAuth, homeController.getDashBoard);
 router.get('/todo', todoController.getTodo);
 router.post('/posttodo', todoController.postTodo);
 router.delete('/deleteTodo', todoController.deleteTodo);
+router.put('/updateTodo', todoController.updateTodo);
 
 
 module.exports = router;

@@ -17,11 +17,22 @@ module.exports = {
           res.redirect("/dashboard");
     },
     deleteTodo: async (req, res, next)=>{
-        console.log(req.body.todoIdFromJSFile)
         try{
             await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
             console.log('Deleted Todo')
             res.json('Deleted It')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    updateTodo: async (req, res, next)=>{
+        try{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                todo: req.body.todoInputFromJSFile,
+                urgency:req.body.todoUrgencyFromJSFile
+            })
+            console.log('Update Todo')
+            res.json('Updated It')
         }catch(err){
             console.log(err)
         }

@@ -124,7 +124,7 @@
   }
   ```
 -->
-<form class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+<form class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8" action="postgrowth" method="POST">
   <div class="space-y-12">
     
 
@@ -134,9 +134,9 @@
 
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-3">
-          <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Goals you seek to crush</label>
+          <label for="goal" class="block text-sm font-medium leading-6 text-gray-900">Goals you seek to crush</label>
           <div class="mt-2">
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Write your goals.">
+            <input type="text" name="goal" id="goal" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Write your goals.">
           </div>
         </div> 
       </div>
@@ -152,27 +152,27 @@
           <legend class="text-sm font-semibold leading-6 text-gray-900">Define the Goal's Schedule</legend>
           <div class="mt-6 space-y-6">
             <div class="flex items-center gap-x-3">
-              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" checked>
+              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Weekly Goals" checked>
               <label for="schedule" class="block text-sm font-bold leading-6 text-gray-900 text-urgentTaskColor">Weekly Goals</label>
               <p class="text-gray-500">Before the start of the week, write down your weekly goals that will directly influence the <strong>MONTHLY</strong> goal.</p>
             </div>
             <div class="flex items-center gap-x-3">
-              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Monthly Goals">
               <label for="schedule" class="block text-sm font-bold leading-6 text-gray-900 text-primaryTaskColor">Monthly Goals</label>
               <p class="text-gray-500">Before the start of the month, write down your monthly goals that will directly influence the <strong>YEARLY</strong> goal.</p>
             </div>
             <div class="flex items-center gap-x-3">
-              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="One Year Goals">
               <label for="schedule" class="block text-sm font-bold leading-6 text-gray-900 text-secondaryTaskColor">One Year Goals</label>
               <p class="text-gray-500">Write down your goals for the year that will directly influence the <strong>FIVE YEAR</strong> goals.</p>
             </div>
             <div class="flex items-center gap-x-3">
-              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Five Year Goals">
               <label for="schedule" class="block text-sm font-bold leading-6 text-gray-900 text-reminderTaskColor">Five Year Goals</label>
               <p class="text-gray-500">Write down your  five year goals that will directly influence the <strong>TEN YEAR</strong> dream life.</p>
             </div>
             <div class="flex items-center gap-x-3">
-              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              <input id="schedule" name="schedule" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="Ten Year Dream Life">
               <label for="schedule" class="block text-sm font-bold leading-6 text-gray-900">Ten Year Dream Life</label>
               <p class="text-gray-500">Write down your  ten year goals that will shape your <strong>OPTIMUM DREAM LIFE</strong>.</p>
             </div>

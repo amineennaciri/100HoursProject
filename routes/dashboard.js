@@ -15,6 +15,8 @@ router.delete('/deleteTodo', todoController.deleteTodo);
 router.put('/updateTodo', todoController.updateTodo);
 // goal's routes
 router.get('/growth',ensureAuth, goalController.getGoal);
-//router.post('/posttodo', todoController.postTodo);
+router.post('/postgrowth', goalController.postGoal);
+router.delete('/deleteGoal', goalController.deleteGoal);
+router.put('/updateGoal', goalController.updateGoal);
 
 module.exports = router;

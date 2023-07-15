@@ -1,8 +1,18 @@
 module.exports = {
-    ensureAuth: function (req, res, next, err) {
+    /* ensureAuth: function (req, res, next, err) {
       if (req.isAuthenticated()) {
         return next()
       } else {
+        console.log(err);
+        res.redirect('/')
+      }
+    } */
+    ensureAuth: async function (req, res, next, err) {
+      try {
+        if (req.isAuthenticated()) {
+          return next()
+        }  
+      } catch (error) {
         console.log(err);
         res.redirect('/')
       }

@@ -16,7 +16,7 @@ require("dotenv").config({ path: "./config/.env" });
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 require('./config/passport')(passport);
 //Connect To Database
-connectDB();
+//connectDB();
 app.use(passport.initialize());
 // you will have access to the currentUser variable in all of your views, and you won’t have to manually pass it into all of the controllers in which you need it.
 app.use(function(req, res, next) {
@@ -35,6 +35,8 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/dashboard", dashboardRoutes);
 
-app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`)
-});
+connectDB().then(()=>{
+    app.listen(process.env.PORT || PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}`)
+    });
+})

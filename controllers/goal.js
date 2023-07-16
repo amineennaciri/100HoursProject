@@ -8,13 +8,18 @@ module.exports = {
         res.render('goal.ejs',{ user: req.user});
     },
     postGoal: async (req, res, next)=>{
-        const goal = new Goal({
-            goal: req.body.goal,
-            schedule: req.body.schedule,
-            author: req.user._id,
-          });
-          const result = await goal.save();
-          res.redirect("/dashboard");
+        try {
+            console.log(req.user._id);
+            const goal = new Goal({
+                goal: req.body.goal,
+                schedule: req.body.schedule,
+                author: req.user._id,
+              });
+              const result = await goal.save();
+              res.redirect("/dashboard");
+        } catch (error) {
+            console.log(err);
+        }
     },
     deleteGoal: async (req, res, next)=>{
         try{

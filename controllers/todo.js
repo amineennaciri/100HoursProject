@@ -8,13 +8,18 @@ module.exports = {
         res.render('todo.ejs',{ user: req.user});
     },
     postTodo: async (req, res, next)=>{
-        const todo = new Todo({
-            todo: req.body.todo,
-            urgency: req.body.urgency,
-            author: req.user._id,
-          });
-          const result = await todo.save();
-          res.redirect("/dashboard");
+        try {
+            console.log(req.user._id);
+            const todo = new Todo({
+                todo: req.body.todo,
+                urgency: req.body.urgency,
+                author: req.user._id,
+              });
+              const result = await todo.save();
+              res.redirect("/dashboard");    
+        } catch (error) {
+            console.log(err);
+        }
     },
     deleteTodo: async (req, res, next)=>{
         try{

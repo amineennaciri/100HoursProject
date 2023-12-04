@@ -1,9 +1,14 @@
 import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
+import FetchBanner from './FetchBanner';
+import { useHistory } from 'react-router-dom';
 
 export default function Signup() {
+    const history = useHistory();
     const [formSubmitted, setFormSubmitted] = React.useState(false);
+    const [validationMessage, setValidationMessage] = React.useState(null);
+    const [errorMessage, setErrorMessage] = React.useState(null);
     const [formData, setFormData] = React.useState({
         firstN: "",
         lastN: "",
@@ -31,11 +36,13 @@ export default function Signup() {
           if (!response.ok) {
             // Handle error here
             console.error('Failed to submit form:', response.statusText);
+            setErrorMessage(`Failed to submit form: ${response.statusText}${' status code '}${response.status}`);
             return;
           }
     
           // Handle success here
           console.log('Form submitted successfully');
+          setValidationMessage(`Form submitted successfully: ${response.statusText}${' status code '}${response.status}`)
           setFormData({ ...formData,
             firstN: "",
             lastN: "",
@@ -43,9 +50,12 @@ export default function Signup() {
             password: "",
             confirmPassword: ""
             })
+          setFormSubmitted(false);
+          history.push('/'); //redirect to home page
         } catch (error) {
           // Handle network or other errors
           console.error('Error:', error.message);
+          setErrorMessage(`Error: ${error.message}`);
         }
       };
       if (formSubmitted) {
@@ -54,6 +64,9 @@ export default function Signup() {
     },[formSubmitted])
 
   return (
+    <>
+    {validationMessage && <FetchBanner bannerMessage={validationMessage}/>}
+    {errorMessage && <FetchBanner bannerMessage={errorMessage}/>}
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -68,9 +81,9 @@ export default function Signup() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sign Up</h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
-          Aute magna irure deserunt veniam aliqua magna enim voluptate.
+        Please enter your information below.
         </p>
       </div>
       <form onSubmit={(e)=>{
@@ -79,7 +92,7 @@ export default function Signup() {
       }} className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="firstN" className="block text-sm font-semibold leading-6 text-gray-900">
               First name
             </label>
             <div className="mt-2.5">
@@ -96,7 +109,7 @@ export default function Signup() {
             </div>
           </div>
           <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="lastN" className="block text-sm font-semibold leading-6 text-gray-900">
               Last name
             </label>
             <div className="mt-2.5">
@@ -130,7 +143,7 @@ export default function Signup() {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="company" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
               Enter your password
             </label>
             <div className="mt-2.5">
@@ -147,7 +160,7 @@ export default function Signup() {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="company" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="confirmPassword" className="block text-sm font-semibold leading-6 text-gray-900">
               Confirm your password
             </label>
             <div className="mt-2.5">
@@ -174,5 +187,6 @@ export default function Signup() {
         </div>
       </form>
     </div>
+    </>
   )
 }

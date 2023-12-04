@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
-const flash = require('express-flash');
+const cors = require('cors');
 const mainRoutes = require('./routes/main');
 const dashboardRoutes = require('./routes/dashboard');
 const connectDB = require("./config/database");
@@ -18,6 +18,14 @@ require('./config/passport')(passport);
 //Connect To Database
 //connectDB();
 app.use(passport.initialize());
+// Use CORS middleware
+app.use(cors(
+    {
+        origin: 'http://localhost:5173',// 'http://yourfrontenddomain.com'
+        credentials: true,  // If you need to send cookies or authentication headers
+    }
+));
+
 // you will have access to the currentUser variable in all of your views, and you won’t have to manually pass it into all of the controllers in which you need it.
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
@@ -25,15 +33,15 @@ app.use(function(req, res, next) {
 });
 
 app.use(passport.session());
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+/* app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public'))); */
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 // these are the flash alert that works when something isn't working well with our log ins
-app.use(flash());
+/* app.use(flash()); */
 
 app.use("/", mainRoutes);
-app.use("/dashboard", dashboardRoutes);
+/* app.use("/dashboard", dashboardRoutes); */
 
 connectDB().then(()=>{
     app.listen(process.env.PORT || PORT, () => {

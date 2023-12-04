@@ -1,9 +1,57 @@
-import { useState } from 'react'
+import React from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
 
 export default function Signup() {
-  const [agreed, setAgreed] = useState(false)
+    const [formSubmitted, setFormSubmitted] = React.useState(false);
+    const [formData, setFormData] = React.useState({
+        firstN: "",
+        lastN: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    React.useEffect(() => {
+      const handleSubmit = async () => {
+    
+        try {
+          const response = await fetch('http://localhost:8000/postsignup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              // Add any additional headers as needed
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            // Handle error here
+            console.error('Failed to submit form:', response.statusText);
+            return;
+          }
+    
+          // Handle success here
+          console.log('Form submitted successfully');
+          setFormData({ ...formData,
+            firstN: "",
+            lastN: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+            })
+        } catch (error) {
+          // Handle network or other errors
+          console.error('Error:', error.message);
+        }
+      };
+      if (formSubmitted) {
+        handleSubmit();
+      }
+    },[formSubmitted])
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -25,7 +73,10 @@ export default function Signup() {
           Aute magna irure deserunt veniam aliqua magna enim voluptate.
         </p>
       </div>
-      <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form onSubmit={(e)=>{
+        e.preventDefault();
+        setFormSubmitted(true);
+      }} className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -37,7 +88,10 @@ export default function Signup() {
                 name="firstN"
                 id="firstN"
                 autoComplete='firstN'
+                value={formData.firstN}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
               />
             </div>
           </div>
@@ -51,7 +105,10 @@ export default function Signup() {
                 name="lastN"
                 id="lastN"
                 autoComplete='lastN'
+                value={formData.lastN}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
               />
             </div>
           </div>
@@ -65,7 +122,10 @@ export default function Signup() {
                 name="email"
                 id="email"
                 autoComplete='email'
+                value={formData.email}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
               />
             </div>
           </div>
@@ -79,7 +139,10 @@ export default function Signup() {
                 name="password"
                 id="password"
                 autoComplete='password'
+                value={formData.password}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
               />
             </div>
           </div>
@@ -93,7 +156,10 @@ export default function Signup() {
                 name="confirmPassword"
                 id="confirmPassword"
                 autoComplete='confirmPassword'
+                value={formData.confirmPassword}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
               />
             </div>
           </div>
@@ -103,7 +169,7 @@ export default function Signup() {
             type="submit"
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Let's talk
+            Submit
           </button>
         </div>
       </form>

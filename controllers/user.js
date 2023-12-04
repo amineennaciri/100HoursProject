@@ -21,8 +21,8 @@ module.exports = {
         if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
         if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
         if (validationErrors.length) {
-          req.flash('errors', validationErrors)
-          return res.redirect('../signup')
+          return res.status(400).json({ errors: validationErrors });
+          //return res.redirect('../signup')
         }
         req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
         bcrypt.hash(req.body.password, 10, async   (err, hashedPassword) => {
@@ -35,8 +35,8 @@ module.exports = {
               ]
             });
             if (existingUser) {
-              req.flash('errors', { msg: 'Account with that email address or username already exists.' });
-              return res.redirect('../signup');
+              return res.status(409).json({ error: 'Account with that email address or username already exists.' });
+              //return res.redirect('../signup');
             }
             const user = new User({
               firstName: req.body.firstN,
@@ -45,7 +45,8 @@ module.exports = {
               password: hashedPassword,
             });
             const result = await user.save();
-            res.redirect("/");
+            res.status(201).json({ message: 'User created successfully', user: result });
+            //res.redirect("/");
           } catch(err) {
             return next(err);
           };

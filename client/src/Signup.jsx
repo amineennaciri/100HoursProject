@@ -1,12 +1,11 @@
 import React from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Switch } from '@headlessui/react'
-import FetchBanner from './FetchBanner';
-import { useHistory } from 'react-router-dom';
 
+import FetchBanner from './FetchBanner';
+/* import { useHistory } from 'react-router-dom';
+ */
 export default function Signup() {
-    const history = useHistory();
-    const [formSubmitted, setFormSubmitted] = React.useState(false);
+/*     const history = useHistory();
+ */    const [formSubmitted, setFormSubmitted] = React.useState(false);
     const [validationMessage, setValidationMessage] = React.useState(null);
     const [errorMessage, setErrorMessage] = React.useState(null);
     const [formData, setFormData] = React.useState({

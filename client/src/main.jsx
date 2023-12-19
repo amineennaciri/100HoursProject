@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+/* import { createBrowserRouter, RouterProvider } from "react-router-dom"; */
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './App.jsx'
 import Signup from './Signup.jsx'
 import './index.css'
 
-const router = createBrowserRouter([
+/* const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -14,10 +15,14 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
-]);
+]); */
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/signup" element={<Signup />} />
+  </Routes>
+</BrowserRouter>
+  
 )
